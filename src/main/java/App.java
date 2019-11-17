@@ -15,7 +15,8 @@ public class App {
 
         System.out.println("damon");
         //最基础测试
-        //createStartPdf("start.pdf");
+//        createStartPdf("start.pdf");
+        createStartPdf("results/App.pdf");
         //测试中文字体
 
 //        createFontPdf("测试中文.pdf");
@@ -29,13 +30,15 @@ public class App {
 
     private static void createStartPdf(String des) throws FileNotFoundException, DocumentException {
         Document document = new Document();
-        PdfWriter.getInstance(document, new FileOutputStream(des));
+        PdfWriter pdfWriter=PdfWriter.getInstance(document, new FileOutputStream(des));
         document.open();
+        float first=pdfWriter.getVerticalPosition(false);   //可以获取此刻在页面的垂直位置
         document.add(new Paragraph("Hello world itext5"));
+        float second=pdfWriter.getVerticalPosition(false);
         document.close();
     }
 
-    //todo: 测试中文字体
+    //中文字体
     private static void createFontPdf(String des) throws IOException, DocumentException {
         Document document = new Document();
         PdfWriter pdfWriter = PdfWriter.getInstance(document, new FileOutputStream(des));
